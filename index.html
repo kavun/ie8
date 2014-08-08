@@ -75,14 +75,14 @@ for (var i = 0, l = inputs.length; i &lt; l; i++) {
 </code></pre><p>IE8 vanilla</p><pre><code>var checkboxes = document.querySelectorAll('input[type="checkbox"]');
 </code></pre></div></section>
 
-<section class="slide"><div><h2>Uses of querySelector(All)</h2><h3>Single Element</h3><pre><code>document.querySelector('input'); // will return only one input
+<section class="slide"><div><h2>Uses of querySelector/querySelectorAll</h2><h3>Single Element</h3><pre><code>document.querySelector('input'); // will return only one input
 document.querySelectorAll('input'); // will return all inputs
 </code></pre><h3>Select by ID</h3><pre><code>// selects a single element with id="lblSoupSize"
 document.querySelector('#lblSoupSize');
 </code></pre><h3>Select by className</h3><pre><code>document.querySelectorAll('.soups');
 </code></pre></div></section>
 
-<section class="slide"><div><h2>Uses of querySelector(All)</h2><h3>Select by attribute</h3><pre><code>document.querySelector('[data-soupid="4d7c6b21"]');
+<section class="slide"><div><h2>Uses of querySelector/querySelectorAll</h2><h3>Select by attribute</h3><pre><code>document.querySelector('[data-soupid="4d7c6b21"]');
 </code></pre><h3>Relative selectors</h3><pre><code>document.querySelector('.soup .spoon');
 </code></pre></div></section>
 
@@ -125,24 +125,34 @@ localStorage.getItem('soupOfTheWeek');
 <p><code>JSON.stringify()</code></p>
 </li>
 </ul><pre><code>JSON.stringify({ soupOfTheYear: 'black bean' });
-&gt; "{"soupOfTheYear":"black bean"}"
+// &gt; "{"soupOfTheYear":"black bean"}"
 </code></pre></div></section>
 
-<section class="slide"><div><h2>hashchange event</h2></div></section>
+<section class="slide"><div><h2>hashchange event</h2><pre><code>window.onhashchange = function () {
+    alert(location.hash);
+};
 
-<section class="slide"><div><h2>CSS outline</h2></div></section>
+function hashTo(hash) {
+    location.hash = hash;
+}
 
-<section class="slide"><div><h2>CSS table display</h2></div></section>
+hashTo('hashySoup');
+// &gt; #hashySoup
+</code></pre></div></section>
 
-<section class="slide"><div><h2>CSS counters</h2></div></section>
+<section class="slide"><div><h2>CSS outline</h2><p>http://codepen.io/kavun/pen/axhiv</p></div></section>
 
-<section class="slide"><div><h2>CSS3 box-sizing</h2></div></section>
+<section class="slide"><div><h2>CSS table display</h2><p>http://codepen.io/kavun/pen/Jovdn</p></div></section>
 
-<section class="slide"><div><h2>CSS content for pseudo elements</h2></div></section>
+<section class="slide"><div><h2>CSS counters</h2><p>http://codepen.io/kavun/pen/pGcnk</p></div></section>
 
-<section class="slide"><div><h2>Data URIs</h2></div></section>
+<section class="slide"><div><h2>CSS3 box-sizing</h2><p>http://codepen.io/kavun/pen/LjFiq?editors=110</p></div></section>
 
-<section class="slide"><div><h2>Cross document messaging</h2></div></section>
+<section class="slide"><div><h2>CSS content for pseudo elements</h2><p>http://codepen.io/kavun/pen/slEod</p></div></section>
+
+<section class="slide"><div><h2>Data URIs</h2><p>http://codepen.io/kavun/pen/iByxo?editors=100</p></div></section>
+
+<section class="slide"><div><h2>Cross document messaging</h2><p>cross-origin communication via window.postMessage</p></div></section>
 
 <section class="slide"><div><h2>Cross origin resource sharing</h2></div></section>
 

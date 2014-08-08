@@ -64,7 +64,7 @@ IE8 vanilla
 
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-## Uses of querySelector(All)
+## Uses of querySelector/querySelectorAll
 
 ### Single Element
 
@@ -80,7 +80,7 @@ IE8 vanilla
 
     document.querySelectorAll('.soups');
 
-## Uses of querySelector(All)
+## Uses of querySelector/querySelectorAll
 
 ### Select by attribute
 
@@ -145,23 +145,48 @@ In IE8
 <!-- -->
 
     JSON.stringify({ soupOfTheYear: 'black bean' });
-    > "{"soupOfTheYear":"black bean"}"
+    // > "{"soupOfTheYear":"black bean"}"
 
 ## hashchange event
 
+    window.onhashchange = function () {
+        alert(location.hash);
+    };
+
+    function hashTo(hash) {
+        location.hash = hash;
+    }
+
+    hashTo('hashySoup');
+    // > #hashySoup
+
 ## CSS outline
+
+http://codepen.io/kavun/pen/axhiv
 
 ## CSS table display
 
+http://codepen.io/kavun/pen/Jovdn
+
 ## CSS counters
+
+http://codepen.io/kavun/pen/pGcnk
 
 ## CSS3 box-sizing
 
+http://codepen.io/kavun/pen/LjFiq?editors=110
+
 ## CSS content for pseudo elements
+
+http://codepen.io/kavun/pen/slEod
 
 ## Data URIs
 
+http://codepen.io/kavun/pen/iByxo?editors=100
+
 ## Cross document messaging
+
+cross-origin communication via window.postMessage
 
 ## Cross origin resource sharing
 
