@@ -1,92 +1,150 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<meta name="generator" content="http://www.texts.io/">
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link rel="stylesheet" href="http://lab.hakim.se/reveal-js/css/reveal.min.css"/>
-<link rel="stylesheet" href="http://lab.hakim.se/reveal-js/css/theme/default.css" id="theme">
-<link rel="stylesheet" media="print" href="http://lab.hakim.se/reveal-js/css/print/pdf.css" />
-<!--[if lt IE 9]>
-<script src="http://lab.hakim.se/reveal-js/lib/js/html5shiv.js"></script>
-<![endif]-->
-<script src="http://lab.hakim.se/reveal-js/js/reveal.min.js"></script>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</head>
-<body>
-<div class="reveal">
-<div class="slides">
-<section class="slide"><div><h1><a href="http://caniuse.com/#compare=ie+7,ie+8">IE8 &gt; IE7</a></h1></div></section>
+  <head>
+    <title>IE8 > IE7</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);
+      @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
 
-<section class="slide"><div><ul>
-<li>
-<p><a href="http://www.w3.org/TR/wai-aria/">WAI-ARIA Accessiblity Features</a></p>
-</li>
-</ul><ul>
-<li>
-<p>querySelector / querySelectorAll</p>
-</li><li>
-<p>localStorage / sessionStorage</p>
-</li><li>
-<p>JSON.parse / JSON.stringify</p>
-</li><li>
-<p>hashchange event</p>
-</li><li>
-<p>CSS outline</p>
-</li><li>
-<p>CSS table display</p>
-</li><li>
-<p>CSS counters</p>
-</li><li>
-<p>CSS3 box-sizing</p>
-</li><li>
-<p>CSS content for pseudo elements</p>
-</li><li>
-<p>Data URIs</p>
-</li><li>
-<p>Cross document messaging</p>
-</li><li>
-<p>Cross origin resource sharing</p>
-</li>
-</ul></div></section>
+      body {
+        font-family: 'Open Sans';
+        font-weight: 300;
+      }
+      h1, h2, h3 {
+        font-family: 'Open Sans';
+        font-weight: 400;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Source Code Pro'; }
+      .full-image {
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        padding: 0;
+      }
+      .title {
+        background-color: rgba(255, 255, 255, 0.4);
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
 
-<section class="slide"><div><h2>WAI-ARIA Accesiblity Features</h2><blockquote>
-<p>Semantic information about widgets, structures, and behaviors, in order to allow assistive technologies to convey appropriate information to persons with disabilities.</p>
-</blockquote><blockquote>
-<p>http://www.w3.org/TR/wai-aria/</p>
-</blockquote></div></section>
+class: center, top, full-image
+background-image: url(excited.gif)
+<div class="title">
+<h1>IE8 > IE7</h1>
+</div>
+---
+IE7 & IE8 comparison → http://caniuse.com/#compare=ie+7,ie+8
+-   WAI-ARIA Accessiblity Features
+-   querySelector / querySelectorAll
+-   localStorage / sessionStorage
+-   JSON.parse / JSON.stringify
+-   hashchange event
+-   CSS outline
+-   CSS table display
+-   CSS counters
+-   CSS3 box-sizing
+-   CSS content for pseudo elements
+-   Data URIs
+-   Cross document messaging
+-   Cross origin resource sharing
 
-<section class="slide"><div><h2>Examples</h2><p><code>aria-labelledby</code>, <code>aria-invalid</code>, <code>aria-expanded</code>, <code>aria-readonly</code></p><pre><code>&lt;label for="name"&gt;Name&lt;/label&gt;
-&lt;input type="text" id="name" /&gt;
-</code></pre><pre><code>&lt;label id="lblName"&gt;Name&lt;/label&gt;
-&lt;input type="text" aria-labelledby="lblName" /&gt;
-</code></pre></div></section>
+---
 
-<section class="slide"><div><h2>querySelector() / querySelectorAll()</h2><p>IE7 vanilla</p><pre><code>var inputs = document.getElementsByTagName('input');
+## WAI-ARIA Accesiblity Features
+
+> Semantic information about widgets, structures, and behaviors, in
+> order to allow assistive technologies to convey appropriate
+> information to persons with disabilities.
+
+> http://www.w3.org/TR/wai-aria/
+
+---
+
+## Examples
+
+`aria-labelledby`, `aria-invalid`, `aria-expanded`, `aria-readonly`
+
+```html
+<label for="name">Name</label>
+<input type="text" id="name" />
+
+<label id="lblName">Name</label>
+<input type="text" aria-labelledby="lblName" />
+```
+---
+
+## querySelector / querySelectorAll
+
+✗ IE7 vanilla
+```js
+var inputs = document.getElementsByTagName('input');
 var checkboxes = [];
-for (var i = 0, l = inputs.length; i &lt; l; i++) {
+for (var i = 0, l = inputs.length; i < l; i++) {
     if (inputs[i].type === 'checkbox') {
         checkboxes.push(inputs[i]);
     }
 }
-</code></pre><p>jQuery</p><pre><code>var checkboxes = $('input[type="checkbox"]');
-</code></pre><p>IE8 vanilla</p><pre><code>var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-</code></pre></div></section>
+```
+--
+✓ jQuery
+```js
+var checkboxes = $('input[type="checkbox"]');
+```
+--
+★ IE8 vanilla
+```js
+var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+```
 
-<section class="slide"><div><h2>Uses of querySelector/querySelectorAll</h2><h3>Single Element</h3><pre><code>document.querySelector('input'); // will return only one input
+---
+
+## querySelector / querySelectorAll
+
+Single element
+```js
+document.querySelector('input'); // will return only one input
 document.querySelectorAll('input'); // will return all inputs
-</code></pre><h3>Select by ID</h3><pre><code>// selects a single element with id="lblSoupSize"
+```
+--
+Select by `id`
+```js
+// selects a single element with id="lblSoupSize"
 document.querySelector('#lblSoupSize');
-</code></pre><h3>Select by className</h3><pre><code>document.querySelectorAll('.soups');
-</code></pre></div></section>
+```
+--
+Select by `className`
+```js
+document.querySelectorAll('.soups');
+```
 
-<section class="slide"><div><h2>Uses of querySelector/querySelectorAll</h2><h3>Select by attribute</h3><pre><code>document.querySelector('[data-soupid="4d7c6b21"]');
-</code></pre><h3>Relative selectors</h3><pre><code>document.querySelector('.soup .spoon');
-</code></pre></div></section>
+---
 
-<section class="slide"><div><h2>localStorage / sessionStorage</h2><p>Persistent storage in the browser</p><p>In IE7 ... <a href="http://www.quirksmode.org/js/cookies.html#ex">cookies</a></p><p>In IE8 ...</p><pre><code>interface Storage {
+## querySelector / querySelectorAll
+
+Select by attribute
+```js
+document.querySelector('[data-soupid="4d7c6b21"]');
+```
+--
+Relative selectors
+```js
+document.querySelector('.soup .spoon');
+```
+---
+
+## localStorage / sessionStorage
+
+Persistent storage in the browser
+
+In IE7 we had [cookies](http://www.quirksmode.org/js/cookies.html#ex)
+
+In IE8 →
+```
+interface Storage {
   readonly attribute unsigned long length;
   DOMString? key(unsigned long index);
   getter DOMString? getItem(DOMString key);
@@ -94,41 +152,70 @@ document.querySelector('#lblSoupSize');
   deleter void removeItem(DOMString key);
   void clear();
 };
-</code></pre></div></section>
+```
+---
+## JSON.parse / JSON.stringify
 
-<section class="slide"><div><h2>Session Storage</h2><blockquote>
-<p>Maintains a storage area that's available for the duration of the page session. A page session lasts for as long as the browser is open and survives over page reloads and restores. Opening a page in a new tab or window will cause a new session to be initiated.</p>
-</blockquote><blockquote>
-<p>https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Storage</p>
-</blockquote><pre><code>sessionStorage.setItem('soupOfTheDay', 'tomato');
+In IE7 (ASP.NET Ajax)
+```js
+var obj = Sys.Serialization.JavaScriptSerializer.serialize(json);
+var json = Sys.Serialization.JavaScriptSerializer.deserialize(obj);
+```
+--
+In IE8
+```js
+var obj = JSON.parse(json);
+var json = JSON.stringify(obj);
+```
+```js
+JSON.stringify({ soupOfTheYear: 'black bean' });
+// > "{"soupOfTheYear":"black bean"}"
+```
+---
+## Session Storage
+
+In browser storage that persists for a single _page_ session.
+
+What's a session?
+- Browser is open
+- Persists between page reloads
+- New tab or a redirect will create a new _page_ session
+
+Useful for saving state of a page (form fields) in case of accidental refresh by a user.
+
+```js
+sessionStorage.setItem('soupOfTheDay', 'tomato');
 sessionStorage.getItem('soupOfTheDay');
-</code></pre></div></section>
+```
+---
 
-<section class="slide"><div><h2>Local Storage</h2><blockquote>
-<p>The same as<code>&nbsp;sessionStorage </code>[...] but it is persistent</p>
-</blockquote><blockquote>
-<p>https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Storage</p>
-</blockquote><pre><code>localStorage.setItem('soupOfTheWeek', 'bisque');
+## Local Storage
+
+Same as `sessionStorage` but it ...
+- persists between redirects
+- persists when opening and closing the browser
+- exists across a whole domain
+
+```js
+localStorage.setItem('soupOfTheWeek', 'bisque');
 localStorage.getItem('soupOfTheWeek');
-</code></pre></div></section>
+```
 
-<section class="slide"><div><h2>JSON.parse / JSON.stringify</h2><p>In IE7 (ASP.NET Ajax)</p><ul>
-<li>
-<p><code>Sys.Serialization.JavaScriptSerializer.serialize()</code></p>
-</li><li>
-<p><code>Sys.Serialization.JavaScriptSerializer.deserialize()</code></p>
-</li>
-</ul><p>In IE8</p><ul>
-<li>
-<p><code>JSON.parse()</code></p>
-</li><li>
-<p><code>JSON.stringify()</code></p>
-</li>
-</ul><pre><code>JSON.stringify({ soupOfTheYear: 'black bean' });
-// &gt; "{"soupOfTheYear":"black bean"}"
-</code></pre></div></section>
+```js
+var obj = { soup: 'Kale' };
 
-<section class="slide"><div><h2>hashchange event</h2><pre><code>window.onhashchange = function () {
+// set with JSON.stringify
+localStorage.setItem('soup', JSON.stringify(obj));
+
+// get with JSON.parse
+obj = JSON.parse(localStorage.getItem('soup'));
+```
+---
+
+## hashchange event
+
+```js
+window.onhashchange = function () {
     alert(location.hash);
 };
 
@@ -137,30 +224,47 @@ function hashTo(hash) {
 }
 
 hashTo('hashySoup');
-// &gt; #hashySoup
-</code></pre></div></section>
+// > #hashySoup
+```
 
-<section class="slide"><div><h2>CSS outline</h2><p>http://codepen.io/kavun/pen/axhiv</p></div></section>
+---
+class: middle, center
+# [CSS outline](http://codepen.io/kavun/pen/axhiv)
 
-<section class="slide"><div><h2>CSS table display</h2><p>http://codepen.io/kavun/pen/Jovdn</p></div></section>
+---
+class: middle, center
+# [CSS table display](http://codepen.io/kavun/pen/Jovdn)
 
-<section class="slide"><div><h2>CSS counters</h2><p>http://codepen.io/kavun/pen/pGcnk</p></div></section>
+---
+class: middle, center
+# [CSS counters](http://codepen.io/kavun/pen/pGcnk)
 
-<section class="slide"><div><h2>CSS3 box-sizing</h2><p>http://codepen.io/kavun/pen/LjFiq?editors=110</p></div></section>
+---
+class: middle, center
+# [CSS3 box-sizing](http://codepen.io/kavun/pen/LjFiq?editors=110)
 
-<section class="slide"><div><h2>CSS content for pseudo elements</h2><p>http://codepen.io/kavun/pen/slEod</p></div></section>
+---
+class: middle, center
+# [CSS content for pseudo elements](http://codepen.io/kavun/pen/slEod)
 
-<section class="slide"><div><h2>Data URIs</h2><p>http://codepen.io/kavun/pen/iByxo?editors=100</p></div></section>
+---
+class: middle, center
+# [Data URIs](http://codepen.io/kavun/pen/iByxo?editors=100)
 
-<section class="slide"><div><h2>Cross document messaging</h2><p>cross-origin communication via window.postMessage</p></div></section>
+---
+class: middle, center
+# [Cross document messaging]()
 
-<section class="slide"><div><h2>Cross origin resource sharing</h2></div></section>
+cross-origin communication via `window.postMessage`
 
-</div>
-</div>
-<script>
-// https://github.com/hakimel/reveal.js#configuration
-Reveal.initialize({ controls: false, history: true, transition: 'linear' });
-</script>
-</body>
+---
+# [Cross origin resource sharing]()
+
+    </textarea>
+    <script src="http://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      var slideshow = remark.create();
+    </script>
+  </body>
 </html>
