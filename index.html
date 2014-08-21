@@ -65,9 +65,7 @@ IE7 & IE8 comparison → http://caniuse.com/#compare=ie+7,ie+8
 
 > http://www.w3.org/TR/wai-aria/
 
----
-
-## Examples
+--
 
 `aria-labelledby`, `aria-invalid`, `aria-expanded`, `aria-readonly`
 
@@ -137,25 +135,9 @@ Relative selectors
 ```js
 document.querySelector('.soup .spoon');
 ```
----
+--
+More selectors: http://www.w3.org/TR/CSS2/selector.html
 
-## localStorage / sessionStorage
-
-Persistent storage in the browser
-
-In IE7 we had [cookies](http://www.quirksmode.org/js/cookies.html#ex)
-
-In IE8 →
-```
-interface Storage {
-  readonly attribute unsigned long length;
-  DOMString? key(unsigned long index);
-  getter DOMString? getItem(DOMString key);
-  setter creator void setItem(DOMString key, DOMString value);
-  deleter void removeItem(DOMString key);
-  void clear();
-};
-```
 ---
 ## JSON.parse / JSON.stringify
 
@@ -173,6 +155,25 @@ var json = JSON.stringify(obj);
 ```js
 JSON.stringify({ soupOfTheYear: 'black bean' });
 // > "{"soupOfTheYear":"black bean"}"
+```
+---
+
+## localStorage / sessionStorage
+
+Persistent storage *in the browser*
+
+In IE7 we had [cookies](http://www.quirksmode.org/js/cookies.html#ex)
+
+In IE8 we have *the Storage interface*
+```
+interface Storage {
+  readonly attribute unsigned long length;
+  DOMString? key(unsigned long index);
+  getter DOMString? getItem(DOMString key);
+  setter creator void setItem(DOMString key, DOMString value);
+  deleter void removeItem(DOMString key);
+  void clear();
+};
 ```
 ---
 ## Session Storage
@@ -198,6 +199,17 @@ Same as `sessionStorage` but it ...
 - persists between redirects
 - persists when opening and closing the browser
 - exists across a whole domain
+
+--
+
+Useful for
+- caching assets (like [addyosmani/basket.js](http://addyosmani.github.io/basket.js/))
+- saving user preferences like color scheme or font size preferences
+- saving reusable form fields, like "User Name"
+
+---
+
+## Local Storage
 
 ```js
 localStorage.setItem('soupOfTheWeek', 'bisque');
