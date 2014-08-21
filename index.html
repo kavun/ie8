@@ -26,6 +26,9 @@
       .title {
         background-color: rgba(255, 255, 255, 0.4);
       }
+      .remark-code-line-highlighted {
+background-color: rgba(88, 88, 88, 0.5);
+}
     </style>
   </head>
   <body>
@@ -73,7 +76,7 @@ IE7 & IE8 comparison → http://caniuse.com/#compare=ie+7,ie+8
 <input type="text" id="name" />
 
 <label id="lblName">Name</label>
-<input type="text" aria-labelledby="lblName" />
+*<input type="text" aria-labelledby="lblName" />
 ```
 ---
 
@@ -156,7 +159,7 @@ interface Storage {
 ---
 ## JSON.parse / JSON.stringify
 
-In IE7 (ASP.NET Ajax)
+In IE7 you could use `JavaScriptSerializer` from ASP.NET Ajax, or you could shim `JSON` with [bestiejs/json3](http://bestiejs.github.io/json3/)
 ```js
 var obj = Sys.Serialization.JavaScriptSerializer.serialize(json);
 var json = Sys.Serialization.JavaScriptSerializer.deserialize(obj);
@@ -264,7 +267,10 @@ cross-origin communication via `window.postMessage`
     <script src="http://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript">
     </script>
     <script type="text/javascript">
-      var slideshow = remark.create();
+      var slideshow = remark.create({
+        ratio: '16:9',
+        highlightStyle: 'tomorrow-night-eighties'
+      });
     </script>
   </body>
 </html>
