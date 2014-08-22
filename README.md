@@ -83,7 +83,7 @@ Select by attribute
 ```js
 document.querySelector('[data-soupid="4d7c6b21"]');
 ```
---
+
 Relative selectors
 ```js
 document.querySelector('.soup .spoon');
@@ -127,7 +127,7 @@ interface Storage {
 };
 ```
 
-### Session Storage
+#### Session Storage
 
 In browser storage that persists for a single _page_ session.
 
@@ -143,7 +143,7 @@ sessionStorage.setItem('soupOfTheDay', 'tomato');
 sessionStorage.getItem('soupOfTheDay');
 ```
 
-### Local Storage
+#### Local Storage
 
 Same as `sessionStorage` but it ...
 - persists between redirects
@@ -185,19 +185,19 @@ hashTo('hashySoup');
 // > #hashySoup
 ```
 
-# [CSS outline](http://codepen.io/kavun/pen/axhiv)
+## [CSS outline](http://codepen.io/kavun/pen/axhiv)
 
-# [CSS table display](http://codepen.io/kavun/pen/Jovdn)
+## [CSS table display](http://codepen.io/kavun/pen/Jovdn)
 
-# [CSS counters](http://codepen.io/kavun/pen/pGcnk)
+## [CSS counters](http://codepen.io/kavun/pen/pGcnk)
 
-# [CSS3 box-sizing](http://codepen.io/kavun/pen/LjFiq?editors=110)
+## [CSS3 box-sizing](http://codepen.io/kavun/pen/LjFiq?editors=110)
 
-# [CSS content for pseudo elements](http://codepen.io/kavun/pen/slEod)
+## [CSS content for pseudo elements](http://codepen.io/kavun/pen/slEod)
 
-# [Data URIs](http://codepen.io/kavun/pen/iByxo?editors=100)
+## [Data URIs](http://codepen.io/kavun/pen/iByxo?editors=100)
 
-# Cross document messaging
+## Cross document messaging
 
 - Enables cross-origin communication via `window.postMessage`
 - Same-origin would be locations with the same protocol (`http` port `80`), so cross-origin would be across different protocols
@@ -207,7 +207,7 @@ hashTo('hashySoup');
     - an object in `window.frames`
 - When listening for messages sent with `window.postMessage`, **always** check the message's `origin` (URL) and `sender` (`window`) properties to prevent cross-site scripting attacks
 
-# Cross origin resource sharing (CORS)
+## Cross origin resource sharing (CORS)
 How can we make an AJAX call from one domain to another?
 
 - Before CORS there was JSONP for cross domain resource loading
@@ -229,7 +229,7 @@ var xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://someserver.com/someresource', true);
 ```
 
-### More information
+#### More information
 
 - More information from IEInternals about ["Restrictions, Limitations and Workarounds" of `XDomainRequest`](http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx)
 - Cross-browser tutorials on CORS
