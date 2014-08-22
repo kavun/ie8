@@ -1,30 +1,25 @@
-# [IE8 \> IE7][]
+# What's new in IE8?
+## More than you think, now that IE7 is gone
 
--   [WAI-ARIA Accessiblity Features][]
+[☛ View Slides](http://kavun.github.io/ie8)
 
--   querySelector / querySelectorAll
+## New features in IE8
 
--   localStorage / sessionStorage
+[Comparison of features in IE7 & IE8](http://caniuse.com/#compare=ie+7,ie+8)
 
--   JSON.parse / JSON.stringify
-
--   hashchange event
-
--   CSS outline
-
--   CSS table display
-
--   CSS counters
-
--   CSS3 box-sizing
-
--   CSS content for pseudo elements
-
--   Data URIs
-
--   Cross document messaging
-
--   Cross origin resource sharing
+- WAI-ARIA Accessiblity Features
+- querySelector / querySelectorAll
+- JSON.parse / JSON.stringify
+- localStorage / sessionStorage
+- hashchange event
+- CSS outline
+- CSS table display
+- CSS counters
+- CSS3 box-sizing
+- CSS content for pseudo elements
+- Data URIs
+- Cross document messaging
+- Cross origin resource sharing
 
 ## WAI-ARIA Accesiblity Features
 
@@ -34,162 +29,212 @@
 
 > http://www.w3.org/TR/wai-aria/
 
-## Examples
-
 `aria-labelledby`, `aria-invalid`, `aria-expanded`, `aria-readonly`
 
-    <label for="name">Name</label>
-    <input type="text" id="name" />
+```html
+<label for="name">Name</label>
+<input type="text" id="name" />
 
-    <label id="lblName">Name</label>
-    <input type="text" aria-labelledby="lblName" />
+<label id="lblName">Name</label>
+*<input type="text" aria-labelledby="lblName" />
+```
 
-## querySelector() / querySelectorAll()
+## querySelector / querySelectorAll
 
-IE7 vanilla
-
-    var inputs = document.getElementsByTagName('input');
-    var checkboxes = [];
-    for (var i = 0, l = inputs.length; i < l; i++) {
-        if (inputs[i].type === 'checkbox') {
-            checkboxes.push(inputs[i]);
-        }
+✗ IE7 vanilla
+```js
+var inputs = document.getElementsByTagName('input');
+var checkboxes = [];
+for (var i = 0, l = inputs.length; i < l; i++) {
+    if (inputs[i].type === 'checkbox') {
+        checkboxes.push(inputs[i]);
     }
+}
+```
 
-jQuery
+✓ jQuery
+```js
+var checkboxes = $('input[type="checkbox"]');
+```
 
-    var checkboxes = $('input[type="checkbox"]');
+★ IE8 vanilla
+```js
+var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+```
 
-IE8 vanilla
+Single element
+```js
+document.querySelector('input'); // will return only one input
+document.querySelectorAll('input'); // will return all inputs
+```
 
-    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+Select by `id`
+```js
+// selects a single element with id="lblSoupSize"
+document.querySelector('#lblSoupSize');
+```
 
-## Uses of querySelector/querySelectorAll
+Select by `className`
+```js
+document.querySelectorAll('.soups');
+```
 
-### Single Element
+Select by attribute
+```js
+document.querySelector('[data-soupid="4d7c6b21"]');
+```
+--
+Relative selectors
+```js
+document.querySelector('.soup .spoon');
+```
 
-    document.querySelector('input'); // will return only one input
-    document.querySelectorAll('input'); // will return all inputs
-
-### Select by ID
-
-    // selects a single element with id="lblSoupSize"
-    document.querySelector('#lblSoupSize');
-
-### Select by className
-
-    document.querySelectorAll('.soups');
-
-## Uses of querySelector/querySelectorAll
-
-### Select by attribute
-
-    document.querySelector('[data-soupid="4d7c6b21"]');
-
-### Relative selectors
-
-    document.querySelector('.soup .spoon');
-
-## localStorage / sessionStorage
-
-Persistent storage in the browser
-
-In IE7 ... [cookies][]
-
-In IE8 ...
-
-    interface Storage {
-      readonly attribute unsigned long length;
-      DOMString? key(unsigned long index);
-      getter DOMString? getItem(DOMString key);
-      setter creator void setItem(DOMString key, DOMString value);
-      deleter void removeItem(DOMString key);
-      void clear();
-    };
-
-## Session Storage
-
-> Maintains a storage area that's available for the duration of the page
-> session. A page session lasts for as long as the browser is open and
-> survives over page reloads and restores. Opening a page in a new tab
-> or window will cause a new session to be initiated.
-
-> https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Storage
-
-    sessionStorage.setItem('soupOfTheDay', 'tomato');
-    sessionStorage.getItem('soupOfTheDay');
-
-## Local Storage
-
-> The same as` sessionStorage `[...] but it is persistent
-
-> https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Storage
-
-    localStorage.setItem('soupOfTheWeek', 'bisque');
-    localStorage.getItem('soupOfTheWeek');
+[More selectors](http://www.w3.org/TR/CSS2/selector.html)
 
 ## JSON.parse / JSON.stringify
 
-In IE7 (ASP.NET Ajax)
-
--   `Sys.Serialization.JavaScriptSerializer.serialize()`
-
--   `Sys.Serialization.JavaScriptSerializer.deserialize()`
+In IE7 you could use `JavaScriptSerializer` from ASP.NET Ajax, or you could shim `JSON` with [bestiejs/json3](http://bestiejs.github.io/json3/)
+```js
+var obj = Sys.Serialization.JavaScriptSerializer.serialize(json);
+var json = Sys.Serialization.JavaScriptSerializer.deserialize(obj);
+```
 
 In IE8
+```js
+var obj = JSON.parse(json);
+var json = JSON.stringify(obj);
+```
+```js
+JSON.stringify({ soupOfTheYear: 'black bean' });
+// > "{"soupOfTheYear":"black bean"}"
+```
 
--   `JSON.parse()`
+## localStorage / sessionStorage
 
--   `JSON.stringify()`
+Persistent storage *in the browser*
 
-<!-- -->
+In IE7 we had [cookies](http://www.quirksmode.org/js/cookies.html#ex)
 
-    JSON.stringify({ soupOfTheYear: 'black bean' });
-    // > "{"soupOfTheYear":"black bean"}"
+In IE8 we have *the Storage interface*
+```
+interface Storage {
+    readonly attribute unsigned long length;
+    DOMString? key(unsigned long index);
+    getter DOMString? getItem(DOMString key);
+    setter creator void setItem(DOMString key, DOMString value);
+    deleter void removeItem(DOMString key);
+    void clear();
+};
+```
+
+### Session Storage
+
+In browser storage that persists for a single _page_ session.
+
+What's a session?
+- Browser is open
+- Persists between page reloads
+- New tab or a redirect will create a new _page_ session
+
+Useful for saving state of a page (form fields) in case of accidental refresh by a user.
+
+```js
+sessionStorage.setItem('soupOfTheDay', 'tomato');
+sessionStorage.getItem('soupOfTheDay');
+```
+
+### Local Storage
+
+Same as `sessionStorage` but it ...
+- persists between redirects
+- persists when opening and closing the browser
+- exists across a whole domain
+
+Useful for
+- caching assets (like [addyosmani/basket.js](http://addyosmani.github.io/basket.js/))
+- saving user preferences like color scheme or font size preferences
+- saving reusable form fields, like "User Name"
+
+```js
+localStorage.setItem('soupOfTheWeek', 'bisque');
+localStorage.getItem('soupOfTheWeek');
+```
+
+```js
+var obj = { soup: 'Kale' };
+
+// set with JSON.stringify
+localStorage.setItem('soup', JSON.stringify(obj));
+
+// get with JSON.parse
+obj = JSON.parse(localStorage.getItem('soup'));
+```
 
 ## hashchange event
 
-    window.onhashchange = function () {
-        alert(location.hash);
-    };
+```js
+window.onhashchange = function () {
+    alert(location.hash);
+};
 
-    function hashTo(hash) {
-        location.hash = hash;
-    }
+function hashTo(hash) {
+    location.hash = hash;
+}
 
-    hashTo('hashySoup');
-    // > #hashySoup
+hashTo('hashySoup');
+// > #hashySoup
+```
 
-## CSS outline
+# [CSS outline](http://codepen.io/kavun/pen/axhiv)
 
-http://codepen.io/kavun/pen/axhiv
+# [CSS table display](http://codepen.io/kavun/pen/Jovdn)
 
-## CSS table display
+# [CSS counters](http://codepen.io/kavun/pen/pGcnk)
 
-http://codepen.io/kavun/pen/Jovdn
+# [CSS3 box-sizing](http://codepen.io/kavun/pen/LjFiq?editors=110)
 
-## CSS counters
+# [CSS content for pseudo elements](http://codepen.io/kavun/pen/slEod)
 
-http://codepen.io/kavun/pen/pGcnk
+# [Data URIs](http://codepen.io/kavun/pen/iByxo?editors=100)
 
-## CSS3 box-sizing
+# Cross document messaging
 
-http://codepen.io/kavun/pen/LjFiq?editors=110
+- Enables cross-origin communication via `window.postMessage`
+- Same-origin would be locations with the same protocol (`http` port `80`), so cross-origin would be across different protocols
+- `window` can be
+    - `contentWindow` of an `iframe` element
+    - the object returned by `window.open`
+    - an object in `window.frames`
+- When listening for messages sent with `window.postMessage`, **always** check the message's `origin` (URL) and `sender` (`window`) properties to prevent cross-site scripting attacks
 
-## CSS content for pseudo elements
+# Cross origin resource sharing (CORS)
+How can we make an AJAX call from one domain to another?
 
-http://codepen.io/kavun/pen/slEod
+- Before CORS there was JSONP for cross domain resource loading
+```js
+function myCallback(data) {}
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = 'http://www.someserver.com/api?callback=myCallback';
+document.body.appendChild(script);
+```
+- IE8 added partial support for CORS with its `XDomainRequest` object
+```js
+var xhr = new XDomainRequest();
+xhr.open('GET', 'https://someserver.com/someresource');
+```
+- All other modern browsers use XMLHttpRequest2 which builds CORS into `XMLHttpRequest`
+```js
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://someserver.com/someresource', true);
+```
 
-## Data URIs
+### More information
 
-http://codepen.io/kavun/pen/iByxo?editors=100
+- More information from IEInternals about ["Restrictions, Limitations and Workarounds" of `XDomainRequest`](http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx)
+- Cross-browser tutorials on CORS
+    - [HTML5Rocks - "Using CORS"](http://www.html5rocks.com/en/tutorials/cors/)
+    - [Telerik - "Using CORS with All (Modern) Browsers"](http://blogs.telerik.com/kendoui/posts/11-10-03/using_cors_with_all_modern_browsers)
 
-## Cross document messaging
-
-cross-origin communication via window.postMessage
-
-## Cross origin resource sharing
-
-  [IE8 \> IE7]: http://caniuse.com/#compare=ie+7,ie+8
-  [WAI-ARIA Accessiblity Features]: http://www.w3.org/TR/wai-aria/
-  [cookies]: http://www.quirksmode.org/js/cookies.html#ex
+# Enjoy IE8!
+Until you find out [how much better IE9 became](http://caniuse.com/#compare=ie+8,ie+9)

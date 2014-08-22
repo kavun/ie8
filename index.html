@@ -1,62 +1,92 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>IE8 > IE7</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <style type="text/css">
-      @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);
-      @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
+	<head>
+		<title>IE8 > IE7</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<style type="text/css">
+			@import url(http://fonts.googleapis.com/css?family=Raleway:400);
+			@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,600);
+			@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
 
-      body {
-        font-family: 'Open Sans';
-        font-weight: 300;
-      }
-      h1, h2, h3 {
-        font-family: 'Open Sans';
-        font-weight: 400;
-      }
-      .remark-code, .remark-inline-code { font-family: 'Source Code Pro'; }
-      .full-image {
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        padding: 0;
-      }
-      .title {
-        background-color: rgba(255, 255, 255, 0.4);
-      }
-      .remark-code-line-highlighted {
-background-color: rgba(88, 88, 88, 0.5);
-}
-    </style>
-  </head>
-  <body>
-    <textarea id="source">
+			body {
+				font-family: 'Source Sans Pro';
+				font-weight: 400;
+				color: #333;
+			}
+			h1, h2, h3 {
+				font-family: 'Raleway';
+				font-weight: 600;
+			}
+			a {
+				color: #3F8EE2;
+				text-decoration: none;
+			}
+			a:hover {
+				text-decoration: underline;
+			}
+			.remark-code, .remark-inline-code { 
+				font-family: 'Source Code Pro';
+				font-weight: 400;
+			}
+			.remark-inline-code {
+				font-weight: 600;
+			}
+			.full-image {
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+				padding: 0;
+			}
+			.title-slide h1 {
+				font-size: 5em;
+				padding: 0;
+				margin: 0;
+			}
+			.title-slide h2 {
+				padding: 0;
+				margin: 0;
+			}
+			.remark-code-line-highlighted {
+				background-color: rgba(88, 88, 88, 0.5);
+			}
+			::selection {
+				background: rgb(255, 247, 181); /* WebKit/Blink Browsers */
+				color: #333;
+			}
+			::-moz-selection {
+				background: rgb(255, 247, 181); /* Gecko Browsers */
+			}
+		</style>
+	</head>
+	<body>
 
-class: center, top, full-image
-background-image: url(excited.gif)
-<div class="title">
-<h1>IE8 > IE7</h1>
-</div>
+		<textarea id="source">
+
+class: left, middle, title-slide
+# What's new in IE8?
+## More than you think, now that IE7 is gone
 ---
-IE7 & IE8 comparison → http://caniuse.com/#compare=ie+7,ie+8
--   WAI-ARIA Accessiblity Features
--   querySelector / querySelectorAll
--   localStorage / sessionStorage
--   JSON.parse / JSON.stringify
--   hashchange event
--   CSS outline
--   CSS table display
--   CSS counters
--   CSS3 box-sizing
--   CSS content for pseudo elements
--   Data URIs
--   Cross document messaging
--   Cross origin resource sharing
+## New features in IE8
+
+Comparison of features in IE7 & IE8 → http://caniuse.com/#compare=ie+7,ie+8
+
+- [WAI-ARIA Accessiblity Features](#wai)
+- [querySelector / querySelectorAll](#querySelector)
+- [JSON.parse / JSON.stringify](#json)
+- [localStorage / sessionStorage](#localStorage)
+- [hashchange event](#hashchange)
+- [CSS outline](#cssoutline)
+- [CSS table display](#csstable)
+- [CSS counters](#csscounters)
+- [CSS3 box-sizing](#boxsizing)
+- [CSS content for pseudo elements](#csscontent)
+- [Data URIs](#datauris)
+- [Cross document messaging](#cdm)
+- [Cross origin resource sharing](#cors)
 
 ---
-
+name:wai
 ## WAI-ARIA Accesiblity Features
 
 > Semantic information about widgets, structures, and behaviors, in
@@ -77,7 +107,7 @@ IE7 & IE8 comparison → http://caniuse.com/#compare=ie+7,ie+8
 *<input type="text" aria-labelledby="lblName" />
 ```
 ---
-
+name:querySelector
 ## querySelector / querySelectorAll
 
 ✗ IE7 vanilla
@@ -85,9 +115,9 @@ IE7 & IE8 comparison → http://caniuse.com/#compare=ie+7,ie+8
 var inputs = document.getElementsByTagName('input');
 var checkboxes = [];
 for (var i = 0, l = inputs.length; i < l; i++) {
-    if (inputs[i].type === 'checkbox') {
-        checkboxes.push(inputs[i]);
-    }
+	if (inputs[i].type === 'checkbox') {
+		checkboxes.push(inputs[i]);
+	}
 }
 ```
 --
@@ -139,6 +169,7 @@ document.querySelector('.soup .spoon');
 More selectors: http://www.w3.org/TR/CSS2/selector.html
 
 ---
+name:json
 ## JSON.parse / JSON.stringify
 
 In IE7 you could use `JavaScriptSerializer` from ASP.NET Ajax, or you could shim `JSON` with [bestiejs/json3](http://bestiejs.github.io/json3/)
@@ -157,7 +188,7 @@ JSON.stringify({ soupOfTheYear: 'black bean' });
 // > "{"soupOfTheYear":"black bean"}"
 ```
 ---
-
+name:localStorage
 ## localStorage / sessionStorage
 
 Persistent storage *in the browser*
@@ -167,12 +198,12 @@ In IE7 we had [cookies](http://www.quirksmode.org/js/cookies.html#ex)
 In IE8 we have *the Storage interface*
 ```
 interface Storage {
-  readonly attribute unsigned long length;
-  DOMString? key(unsigned long index);
-  getter DOMString? getItem(DOMString key);
-  setter creator void setItem(DOMString key, DOMString value);
-  deleter void removeItem(DOMString key);
-  void clear();
+	readonly attribute unsigned long length;
+	DOMString? key(unsigned long index);
+	getter DOMString? getItem(DOMString key);
+	setter creator void setItem(DOMString key, DOMString value);
+	deleter void removeItem(DOMString key);
+	void clear();
 };
 ```
 ---
@@ -226,16 +257,16 @@ localStorage.setItem('soup', JSON.stringify(obj));
 obj = JSON.parse(localStorage.getItem('soup'));
 ```
 ---
-
+name:hashchange
 ## hashchange event
 
 ```js
 window.onhashchange = function () {
-    alert(location.hash);
+	alert(location.hash);
 };
 
 function hashTo(hash) {
-    location.hash = hash;
+	location.hash = hash;
 }
 
 hashTo('hashySoup');
@@ -243,46 +274,104 @@ hashTo('hashySoup');
 ```
 
 ---
+name:cssoutline
 class: middle, center
 # [CSS outline](http://codepen.io/kavun/pen/axhiv)
 
 ---
+name:csstable
 class: middle, center
 # [CSS table display](http://codepen.io/kavun/pen/Jovdn)
 
 ---
+name:csscounters
 class: middle, center
 # [CSS counters](http://codepen.io/kavun/pen/pGcnk)
 
 ---
+name:boxsizing
 class: middle, center
 # [CSS3 box-sizing](http://codepen.io/kavun/pen/LjFiq?editors=110)
 
 ---
+name:csscontent
 class: middle, center
 # [CSS content for pseudo elements](http://codepen.io/kavun/pen/slEod)
 
 ---
+name:datauris
 class: middle, center
 # [Data URIs](http://codepen.io/kavun/pen/iByxo?editors=100)
 
 ---
-class: middle, center
-# [Cross document messaging]()
+name:cdm
+# Cross document messaging
+- Enables cross-origin communication via `window.postMessage`
+--
 
-cross-origin communication via `window.postMessage`
+- Same-origin would be locations with the same protocol (`http` port `80`), so cross-origin would be across different protocols
+--
+
+- `window` can be
+	- `contentWindow` of an `iframe` element
+	- the object returned by `window.open`
+	- an object in `window.frames`
+--
+
+- When listening for messages sent with `window.postMessage`, **always** check the message's `origin` (URL) and `sender` (`window`) properties to prevent cross-site scripting attacks
+
 
 ---
-# [Cross origin resource sharing]()
+name:cors
+# Cross origin resource sharing (CORS)
+How can we make an AJAX call from one domain to another?
+--
 
-    </textarea>
-    <script src="http://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript">
-    </script>
-    <script type="text/javascript">
-      var slideshow = remark.create({
-        ratio: '16:9',
-        highlightStyle: 'tomorrow-night-eighties'
-      });
-    </script>
-  </body>
+- Before CORS there was JSONP for cross domain resource loading
+```js
+function myCallback(data) {}
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = 'http://www.someserver.com/api?callback=myCallback';
+document.body.appendChild(script);
+```
+--
+
+- IE8 added partial support for CORS with its `XDomainRequest` object
+```js
+var xhr = new XDomainRequest();
+xhr.open('GET', 'https://someserver.com/someresource');
+```
+--
+
+- All other modern browsers use XMLHttpRequest2 which builds CORS into `XMLHttpRequest`
+```js
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://someserver.com/someresource', true);
+```
+
+---
+# Cross origin resource sharing (CORS)
+- More information from IEInternals about ["Restrictions, Limitations and Workarounds" of `XDomainRequest`](http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx)
+- Cross-browser tutorials on CORS
+	- [HTML5Rocks - "Using CORS"](http://www.html5rocks.com/en/tutorials/cors/)
+	- [Telerik - "Using CORS with All (Modern) Browsers"](http://blogs.telerik.com/kendoui/posts/11-10-03/using_cors_with_all_modern_browsers)
+
+---
+class: center, top
+# Enjoy IE8!
+--
+
+Until you find out [how much better IE9 became](http://caniuse.com/#compare=ie+8,ie+9)
+
+		</textarea>
+
+		<script src="remark.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var slideshow = remark.create({
+				ratio: '16:9',
+				highlightStyle: 'tomorrow-night-eighties'
+			});
+		</script>
+	</body>
 </html>
