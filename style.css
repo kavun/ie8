@@ -1,0 +1,56 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:300);
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,600);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
+body {
+	font-family: 'Source Sans Pro';
+	font-weight: 400;
+	color: #333;
+}
+
+h1, h2, h3 {
+	font-family: 'Raleway';
+	font-weight: 300;
+}
+
+a {
+	color: #3F8EE2;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.remark-code, .remark-inline-code { 
+	font-family: 'Source Code Pro';
+	font-weight: 400;
+}
+
+.remark-inline-code {
+	font-weight: 600;
+}
+
+.title-slide h1 {
+	font-size: 5em;
+	padding: 0;
+	margin: 0;
+}
+
+.title-slide h2 {
+	padding: 0;
+	margin: 0;
+}
+
+.remark-code-line-highlighted {
+	background-color: rgba(88, 88, 88, 0.5);
+}
+
+::selection {
+	background: rgb(255, 247, 181); /* WebKit/Blink Browsers */
+	color: #333;
+}
+
+::-moz-selection {
+	background: rgb(255, 247, 181); /* Gecko Browsers */
+}
